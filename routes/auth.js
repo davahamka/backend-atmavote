@@ -1,6 +1,7 @@
 const express = require('express');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
+const UserModel = require('../models/user.model')
 
 const router = express.Router();
 
@@ -40,5 +41,10 @@ router.post('/login', async (req, res, next) => {
     }
   })(req, res, next);
 });
+
+router.get('/profile', passport.authenticate('jwt', {session: false}), async (req,res) => {
+  const user = await UserModel.findOne({ _id: req.user._id })
+  res.json({ user })
+})
 
 module.exports = router;

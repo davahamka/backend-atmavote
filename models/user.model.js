@@ -12,15 +12,12 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  vote: {
-    vote_1: { type: String, default: '' },
-    vote_2: { type: String, default: '' },
-    vote_3: { type: String, default: '' },
-    vote_4: { type: String, default: '' },
-    vote_5: { type: String, default: '' },
-    vote_6: { type: String, default: '' },
-    vote_7: { type: String, default: '' }
-  }
+  vote: { type: Array, default: [
+    { name: '', category: 'TERLELAP' },
+    { name: '', category: 'TERNARSIS' },
+    { name: '', category: 'TERLALU LAMA SENDIRI' },
+    { name: '', category: 'TERDZALIMI' },
+  ] }
 });
 
 UserSchema.pre('save', async function(next) {

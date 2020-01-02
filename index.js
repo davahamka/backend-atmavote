@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const express = require('express');
 const passport = require('passport');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const UserModel = require('./models/user.model');
 const app = express();
 require('dotenv').config();
@@ -9,6 +10,8 @@ require('dotenv').config();
 require('./config/passport');
 
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json())
+app.use(cors())
 
 // Routes
 const auth = require('./routes/auth')
@@ -23,7 +26,7 @@ mongoose.connect(process.env.MONGO_URL, {
 
 app.get('/',(req,res,next)=>{
     res.json({
-        message:"Helll  o World"
+        message:"Hello World"
     })
 })
 
