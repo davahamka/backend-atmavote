@@ -22,11 +22,14 @@ mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: true
-}, () => console.log('MongoDB Connected!'))
+}, (err) => {
+    if(err) throw err;
+    console.log("MongoDB Connected")
+})
 
 app.get('/',(req,res,next)=>{
     res.json({
-        message:"Hello World"
+        message:"Hell0o World"
     })
 })
 
